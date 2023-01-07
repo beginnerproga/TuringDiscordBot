@@ -1,4 +1,20 @@
-#TODO add this as command line params b4 deployment to production
 bot:
-  secret: ru9ySwkA3KdK-Can-ytPOagc7wOi9w-O
-  token: MTA1MzQyNjk2MzMxMTc3MTc3OQ.Gjgpjh.Tn38Y6fPoC2NuFLquoAjpYUbLfDQDgAvWUZo5w
+  secret: ${BOT_SECRET}
+  token: ${BOT_TOKEN}
+
+emoji:
+  id:
+    frontend: 1058002066078978058
+    java: 1058002063176519710
+    sql: 1058002067433738290
+    android: 1058002061234540617
+    analytics: 1058002069442809958
+
+server:
+  id: 1053434882258370702
+
+welcome-message:
+  id: 1058007244446384199
+
+welcome-channel:
+  id: 1053434882702983269
