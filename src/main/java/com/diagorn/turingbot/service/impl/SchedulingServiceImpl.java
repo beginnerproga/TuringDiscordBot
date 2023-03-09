@@ -35,7 +35,7 @@ public class SchedulingServiceImpl implements SchedulingService {
     }
 
     @Override
-    @Scheduled(initialDelay = 100, fixedRate = 100)
+    @Scheduled(cron = "${interval-in-cron}")
     public void schedulingMethod() {
         Chapters chapter = Chapters.BEGINNER_TASKS;
         while (true) {
