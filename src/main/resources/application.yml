@@ -18,3 +18,11 @@ welcome-message:
 
 welcome-channel:
   id: 1053434882702983269
+
+scheduling:
+  site:
+    url: https://acm.timus.ru/
+  channel:
+    id: 0
+  interval-in cron:
+    format: 0 30 9 * * *

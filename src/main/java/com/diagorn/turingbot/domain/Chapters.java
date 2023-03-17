@@ -1,4 +1,4 @@
-package com.diagorn.turingbot.util;
+package com.diagorn.turingbot.domain;
 
 public enum Chapters {
     GEOMETRY_TASKS("geometry"),

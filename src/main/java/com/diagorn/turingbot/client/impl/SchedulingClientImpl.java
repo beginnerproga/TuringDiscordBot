@@ -5,7 +5,6 @@ import lombok.SneakyThrows;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.context.annotation.PropertySource;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
@@ -17,11 +16,9 @@ import static com.diagorn.turingbot.util.SchedulingParser.parseAlgorithmTask;
 import static com.diagorn.turingbot.util.SchedulingParser.toRequestParam;
 
 @Component
-@PropertySource("classpath:application-scheduling.properties")
 public class SchedulingClientImpl implements SchedulingClient {
-    @Value("${scheduling-site.url}")
+    @Value("${scheduling.site.url}")
     private String url;
-
 
     @Override
     @SneakyThrows
