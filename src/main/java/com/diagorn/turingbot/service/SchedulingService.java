@@ -15,12 +15,6 @@ public interface SchedulingService {
     void sendAlgorithmTask(int taskId);
 
     /**
-     * Send special answer to discord channel in message,
-     * if the tasks on the site are over
-     */
-    void sendEmptyTasksMessage();
-
-    /**
      * Release scheduling with scheduling annotation
      */
     void schedulingMethod();

@@ -21,10 +21,6 @@ public enum ServerRoleEnum {
         this.name = name;
     }
 
-    public String getName() {
-        return name;
-    }
-
     /**
      * Get custom role by name
      *
@@ -36,12 +32,16 @@ public enum ServerRoleEnum {
             return null;
         }
 
-        for (ServerRoleEnum roleEnum: ServerRoleEnum.values()) {
+        for (ServerRoleEnum roleEnum : ServerRoleEnum.values()) {
             if (roleEnum.name.equalsIgnoreCase(roleName)) {
                 return roleEnum;
             }
         }
 
         return null;
+    }
+
+    public String getName() {
+        return name;
     }
 }

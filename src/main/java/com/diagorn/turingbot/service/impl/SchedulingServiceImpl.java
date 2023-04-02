@@ -1,13 +1,11 @@
 package com.diagorn.turingbot.service.impl;
 
 import com.diagorn.turingbot.client.SchedulingClient;
-import com.diagorn.turingbot.domain.Chapters;
+import com.diagorn.turingbot.domain.Chapter;
 import com.diagorn.turingbot.service.SchedulingService;
 import lombok.SneakyThrows;
 import org.javacord.api.DiscordApi;
 import org.javacord.api.entity.message.MessageBuilder;
-import org.javacord.api.entity.message.mention.AllowedMentions;
-import org.javacord.api.entity.message.mention.AllowedMentionsBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.scheduling.annotation.Scheduled;
@@ -19,11 +17,8 @@ import java.util.List;
 public class SchedulingServiceImpl implements SchedulingService {
     private final SchedulingClient schedulingClient;
     private final DiscordApi discordApi;
-    @Value("${scheduling.channel.id}")
+    @Value("${scheduling-channel-id}")
     private String channelId;
-    private int counterOfTasks = 0;
-    private int counterOfChapters = 0;
-
 
     @Autowired
     public SchedulingServiceImpl(SchedulingClient schedulingClient, DiscordApi discordApi) {
@@ -34,54 +29,30 @@ public class SchedulingServiceImpl implements SchedulingService {
     @Override
     @Scheduled(cron = "${scheduling.interval-in-cron.format}")
     public void schedulingMethod() {
-        Chapters[] chapters = Chapters.values();
-        Chapters chapter = Chapters.BEGINNER_TASKS;
-        while (true) {
-            List<Integer> beginnerIds = schedulingClient.getIds(chapter.getName());
-            if (counterOfTasks < beginnerIds.size()) {
-                sendAlgorithmTask(beginnerIds.get(counterOfTasks));
+        int counterOfTasks = 0;
+        Chapter[] chapters = Chapter.values();
+        for (Chapter chapter : chapters) {
+            List<Integer> headIds = schedulingClient.getIds(chapter.getName());
+            if (counterOfTasks <= headIds.size()) {
+                sendAlgorithmTask(headIds.get(counterOfTasks));
                 ++counterOfTasks;
             } else {
-                ++counterOfChapters;
-                if (counterOfChapters == chapters.length)
-                    break;
                 counterOfTasks = 0;
-                chapter = chapters[counterOfChapters];
             }
         }
-        sendEmptyTasksMessage();
+
     }
 
     @SneakyThrows
     @Override
     public void sendAlgorithmTask(int taskId) {
-        AllowedMentions allowedMentions = new AllowedMentionsBuilder()
-                .setMentionRoles(true)
-                .setMentionEveryoneAndHere(true)
-                .build();
         String result = schedulingClient.getAlgorithm(taskId);
         new MessageBuilder()
-                .setAllowedMentions(allowedMentions)
                 .append(result)
-                .send(discordApi.getTextChannelById(channelId).orElseThrow(() -> {
-                    throw new RuntimeException();
-                }));
-    }
-
-    @Override
-    @SneakyThrows
-    public void sendEmptyTasksMessage() {
-        AllowedMentions allowedMentions = new AllowedMentionsBuilder()
-                .setMentionRoles(true)
-                .setMentionEveryoneAndHere(true)
-                .build();
-        new MessageBuilder()
-                .setAllowedMentions(allowedMentions)
-                .append("Задач на сайте больше нет, обновите сайт для получения новых задач.")
                 .send(discordApi.getTextChannelById(channelId).orElseThrow(() -> {
                     throw new IllegalStateException("Wrong channel id for task messages");
                 }));
-
     }
+
 
 }

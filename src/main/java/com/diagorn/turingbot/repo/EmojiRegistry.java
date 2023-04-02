@@ -41,7 +41,7 @@ public class EmojiRegistry {
             return null;
         }
 
-        for (ServerEmoji serverEmoji: this.customEmoji) {
+        for (ServerEmoji serverEmoji : this.customEmoji) {
             if (serverEmoji.equalsEmoji(emoji)) {
                 return serverEmoji;
             }

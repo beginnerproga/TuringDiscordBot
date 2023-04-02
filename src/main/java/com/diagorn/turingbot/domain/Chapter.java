@@ -1,6 +1,6 @@
 package com.diagorn.turingbot.domain;
 
-public enum Chapters {
+public enum Chapter {
     GEOMETRY_TASKS("geometry"),
     GRAPH_TASKS("graphs"),
     DYNAMIC_PROGRAM_TASKS("dynprog"),
@@ -13,9 +13,9 @@ public enum Chapters {
     UNUSUAL_TASKS("unusual"),
     HARDEST_TASKS("hardest"),
     TRICKY_TASKS("tricky");
-    private String name;
+    private final String name;
 
-    Chapters(String name) {
+    Chapter(String name) {
         this.name = name;
     }
 

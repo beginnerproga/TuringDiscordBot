@@ -14,6 +14,7 @@ public interface RoleService {
 
     /**
      * Adds role to user if user and role are valid
+     *
      * @param user - user
      * @param role - role
      */
@@ -21,6 +22,7 @@ public interface RoleService {
 
     /**
      * Adds role to user if user and role are valid
+     *
      * @param user - user
      * @param role - role
      */
@@ -29,13 +31,15 @@ public interface RoleService {
     /**
      * Adds role to user by emoji.
      * If the emoji is connected to a role, adds that role. Else does nothing
-     * @param user - user
+     *
+     * @param user  - user
      * @param emoji - emoji
      */
     void addRoleToUserByEmoji(User user, Emoji emoji);
 
     /**
      * Removes role from user if user and role are valid
+     *
      * @param user - user
      * @param role - role
      */
@@ -43,6 +47,7 @@ public interface RoleService {
 
     /**
      * Removes role from user if user and role are valid
+     *
      * @param user - user
      * @param role - role
      */
@@ -51,7 +56,8 @@ public interface RoleService {
     /**
      * Removes role from user by emoji.
      * If the emoji is connected to a role, removes that role. Else does nothing
-     * @param user - user
+     *
+     * @param user  - user
      * @param emoji - emoji
      */
     void removeRoleFromUserByEmoji(User user, Emoji emoji);

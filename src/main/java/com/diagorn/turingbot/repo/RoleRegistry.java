@@ -40,6 +40,7 @@ public class RoleRegistry {
 
     /**
      * Find a custom role by ite enum
+     *
      * @param roleEnum - enum role representation
      * @return custom role if such is found, null if not
      */
@@ -48,7 +49,7 @@ public class RoleRegistry {
             return null;
         }
 
-        for (ServerRole serverRole: getCustomRoles()) {
+        for (ServerRole serverRole : getCustomRoles()) {
             if (serverRole.getRoleEnum().equals(roleEnum)) {
                 return serverRole;
             }
